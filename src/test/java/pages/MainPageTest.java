@@ -30,7 +30,7 @@ public class MainPageTest extends BaseTest {
                 textFiltering(new MainPage().getCourseTitles(), "BI-аналитика");
 
         assertEquals(1, listOfCoursesAfterFiltering.size(),
-                "Expected list size is 1, bat actual is " + listOfCoursesAfterFiltering.size());
+                "Expected list size is 1, but actual is " + listOfCoursesAfterFiltering.size());
     }
 
     @Test

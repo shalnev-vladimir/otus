@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +43,7 @@ public class CourseCards extends BasePage<CourseCards> implements Comparable<Cou
     // получаем список текстов начала курса (именно число)
     public List<Integer> getStartMonthList() {
         List<WebElement> webElementList = getWebElementsList(By.cssSelector(courseStartDate));
-        List<String> webElementsListString = getDatesOnCard(webElementList);
+        List<String> webElementsListString = getDatesOnCard(webElementList); // вот здесь ошибка. метод не тот вызываю
         List<Integer> monthsListString = new ArrayList<>();
         for (int i = 0; i < 6; i++) { // cardsList().size() getCourseTitlesList().size() - 1
             monthsListString.add(convertMonthToNumber(getLastWordFromString(webElementsListString.get(i))));
@@ -103,37 +104,82 @@ public class CourseCards extends BasePage<CourseCards> implements Comparable<Cou
     }
 
     // переводим название месяца в порядковый номер месяца (число)
+//    public Integer convertMonthToNumber(String month) {
+//        switch (month) {
+//            case "января":
+//                return 1;
+//            case "февраля":
+//                return 2;
+//            case "марта":
+//                return 3;
+//            case "апреля":
+//                return 4;
+//            case "мая":
+//                return 5;
+//            case "июня":
+//                return 6;
+//            case "июля":
+//                return 7;
+//            case "августа":
+//                return 8;
+//            case "сентября":
+//                return 9;
+//            case "октября":
+//                return 10;
+//            case "ноября":
+//                return 11;
+//            case "декабря":
+//                return 12;
+//            default:
+//                out.println("Ooops! There is no month " + month);
+//                break;
+//        }
+//        return null;
+//    }
+
     public Integer convertMonthToNumber(String month) {
-        switch (month) {
+        int courseStartMonth;
+        switch (month.trim().toLowerCase().replaceAll("[^а-я]", "")) {
             case "января":
-                return 1;
-            case "февраля":
-                return 2;
-            case "марта":
-                return 3;
-            case "апреля":
-                return 4;
-            case "мая":
-                return 5;
-            case "июня":
-                return 6;
-            case "июля":
-                return 7;
-            case "августа":
-                return 8;
-            case "сентября":
-                return 9;
-            case "октября":
-                return 10;
-            case "ноября":
-                return 11;
-            case "декабря":
-                return 12;
-            default:
-                out.println("Ooops! There is no month " + month);
+                courseStartMonth = 1;
                 break;
+            case "февраля":
+                courseStartMonth = 2;
+                break;
+            case "марта":
+                courseStartMonth = 3;
+                break;
+            case "апреля":
+                courseStartMonth = 4;
+                break;
+            case "мая":
+                courseStartMonth = 5;
+                break;
+            case "июня":
+                courseStartMonth = 6;
+                break;
+            case "июля":
+                courseStartMonth = 7;
+                break;
+            case "августа":
+                courseStartMonth = 8;
+                break;
+            case "сентября":
+                courseStartMonth = 9;
+                break;
+            case "октября":
+                courseStartMonth = 10;
+                break;
+            case "ноября":
+                courseStartMonth = 11;
+                break;
+            case "декабря":
+                courseStartMonth = 12;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + month);
         }
-        return null;
+        return courseStartMonth;
     }
 
     //---------------------------------------------------------------------------
@@ -196,6 +242,8 @@ public class CourseCards extends BasePage<CourseCards> implements Comparable<Cou
         latestAndEarliestCourseNames.add(courseCardsList.get(0).getCourseName());
         latestAndEarliestCourseNames.add(courseCardsList.get(courseCardsList.size() - 1).getCourseName());
 
+        out.println(courseCardsList);
+        out.println(latestAndEarliestCourseNames);
         return latestAndEarliestCourseNames;
     }
 

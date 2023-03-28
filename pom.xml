@@ -78,12 +78,12 @@
                 <webdriver.base.url>https://otus.ru</webdriver.base.url>
             </properties>
         </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <webdriver.base.url>https://test.otus.ru</webdriver.base.url>
-            </properties>
-        </profile>
+<!--        <profile>-->
+<!--            <id>test</id>-->
+<!--            <properties>-->
+<!--                <webdriver.base.url>https://test.otus.ru</webdriver.base.url>-->
+<!--            </properties>-->
+<!--        </profile>-->
     </profiles>
 
     <build>
@@ -186,27 +186,27 @@
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <xmlOutput>true</xmlOutput>
-                    <includeTests>true</includeTests>
-                    <omitVisitors>UnreadFields</omitVisitors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>analyze-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>findbugs-maven-plugin</artifactId>-->
+<!--                <version>3.0.5</version>-->
+<!--                <configuration>-->
+<!--                    <effort>Max</effort>-->
+<!--                    <threshold>Low</threshold>-->
+<!--                    <xmlOutput>true</xmlOutput>-->
+<!--                    <includeTests>true</includeTests>-->
+<!--                    <omitVisitors>UnreadFields</omitVisitors>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>analyze-compile</id>-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
