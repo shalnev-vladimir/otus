@@ -1,10 +1,10 @@
 package highlight;
 
+import static java.lang.Thread.sleep;
+
 import core.DriverFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-
-import static java.lang.Thread.sleep;
 
 public final class HighLighter {
 

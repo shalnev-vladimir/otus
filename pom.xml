@@ -12,7 +12,6 @@
         <webdriver.manager.version>4.2.0</webdriver.manager.version>
         <selenium.java.version>3.141.59</selenium.java.version>
         <junit.version>5.8.1</junit.version>
-        <faker.version>1.0.1</faker.version>
 
         <forkCount>1</forkCount>
         <reuseForks>true</reuseForks>
@@ -55,11 +54,6 @@
             <scope>import</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${faker.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
@@ -78,12 +72,6 @@
                 <webdriver.base.url>https://otus.ru</webdriver.base.url>
             </properties>
         </profile>
-<!--        <profile>-->
-<!--            <id>test</id>-->
-<!--            <properties>-->
-<!--                <webdriver.base.url>https://test.otus.ru</webdriver.base.url>-->
-<!--            </properties>-->
-<!--        </profile>-->
     </profiles>
 
     <build>
@@ -120,10 +108,10 @@
                         <test.project.language>${test.project.language}</test.project.language>
                     </systemPropertyVariables>
                     <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>io.qameta.allure.junit5.AllureJunit5</value>
-                        </property>
+<!--                        <property>-->
+<!--                            <name>listener</name>-->
+<!--                            <value>io.qameta.allure.junit5.AllureJunit5</value>-->
+<!--                        </property>-->
                     </properties>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -157,26 +145,41 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
-<!--                <version>3.1.0</version>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.0</version>
 
-<!--                <configuration>-->
-<!--                        <encoding>UTF-8</encoding>-->
-<!--                        <consoleOutput>true</consoleOutput>-->
-<!--                        <failsOnError>true</failsOnError>-->
-<!--                        <linkXRef>false</linkXRef>-->
-<!--                        <suppressionsLocation>-->
-<!--                            src/main/resources/checkstyle-suppression.xml-->
-<!--                        </suppressionsLocation>-->
-<!--                        <suppressionsFileExpression>-->
-<!--                            src/main/resources/checkstyle-suppression.xml-->
-<!--                        </suppressionsFileExpression>-->
+                <configuration>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <linkXRef>false</linkXRef>
 <!--                    <includeTestSourceDirectory>true</includeTestSourceDirectory>-->
-<!--                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>-->
-<!--                </configuration>-->
-<!--                <executions>-->
+                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>analyze-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.5</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                    <includeTests>true</includeTests>
+                    <omitVisitors>UnreadFields</omitVisitors>
+                </configuration>
+                <executions>
 <!--                    <execution>-->
 <!--                        <id>analyze-compile</id>-->
 <!--                        <phase>compile</phase>-->
@@ -184,29 +187,8 @@
 <!--                            <goal>check</goal>-->
 <!--                        </goals>-->
 <!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>org.codehaus.mojo</groupId>-->
-<!--                <artifactId>findbugs-maven-plugin</artifactId>-->
-<!--                <version>3.0.5</version>-->
-<!--                <configuration>-->
-<!--                    <effort>Max</effort>-->
-<!--                    <threshold>Low</threshold>-->
-<!--                    <xmlOutput>true</xmlOutput>-->
-<!--                    <includeTests>true</includeTests>-->
-<!--                    <omitVisitors>UnreadFields</omitVisitors>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>analyze-compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>check</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -215,77 +197,4 @@
         </plugins>
     </build>
 
-<!--    <modules/>-->
-        <!-- No need for Javadoc -->
-<!--        <module name="JavadocType">-->
-<!--            <property name="severity" value="ignore"/>-->
-<!--        </module>-->
-<!--        <module name="JavadocMethod">-->
-<!--            <property name="severity" value="ignore"/>-->
-<!--        </module>-->
-<!--        <module name="JavadocVariable">-->
-<!--            <property name="severity" value="ignore"/>-->
-<!--        </module>-->
-<!--    </modules>-->
-<!--    <module name="JavadocType">-->
-<!--        <property name="severity" value="ignore"/>-->
-<!--    </module>-->
-<!--    <module name="JavadocMethod">-->
-<!--        <property name="severity" value="ignore"/>-->
-<!--    </module>-->
-<!--    <module name="JavadocVariable">-->
-<!--        <property name="severity" value="ignore"/>-->
-<!--    </module>-->
-<!--        </modules>-->
-
 </project>
-
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<project xmlns="http://maven.apache.org/POM/4.0.0"-->
-<!--         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">-->
-<!--    <modelVersion>4.0.0</modelVersion>-->
-
-<!--    <groupId>org.example</groupId>-->
-<!--    <artifactId>otus</artifactId>-->
-<!--    <version>1.0-SNAPSHOT</version>-->
-
-<!--    <properties>-->
-<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
-<!--        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>-->
-<!--        <maven.compiler.source>16</maven.compiler.source>-->
-<!--        <maven.compiler.target>16</maven.compiler.target>-->
-<!--    </properties>-->
-
-<!--    <dependencies>-->
-<!--        <dependency>-->
-<!--            <groupId>org.seleniumhq.selenium</groupId>-->
-<!--            <artifactId>selenium-java</artifactId>-->
-<!--            <version>4.8.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.seleniumhq.selenium</groupId>-->
-<!--            <artifactId>selenium-http-jdk-client</artifactId>-->
-<!--            <version>4.8.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-engine</artifactId>-->
-<!--            <version>5.9.2</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.github.bonigarcia</groupId>-->
-<!--            <artifactId>webdrivermanager</artifactId>-->
-<!--            <version>5.3.2</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-api</artifactId>-->
-<!--            <version>5.9.2</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-<!--    </dependencies>-->
-
-
-<!--</project>-->

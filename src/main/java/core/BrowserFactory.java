@@ -28,6 +28,7 @@ public final class BrowserFactory {
                 ChromeOptions operaOptions = new ChromeOptions();
                 operaOptions.addArguments("--remote-allow-origins=*");
                 driver = new ChromeDriver(operaOptions);
+                break;
             default:
                 new RuntimeException("Invalid browser name");
                 break;

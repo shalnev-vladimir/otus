@@ -26,6 +26,7 @@ public class MainPageTest extends BaseTest {
 
     @Test
     void checkCourseExistTest() {
+        System.out.println("BI-аналитика");
         List<String> listOfCoursesAfterFiltering =
                 textFiltering(new MainPage().getCourseTitles(), "BI-аналитика");
 
