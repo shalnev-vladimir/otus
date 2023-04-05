@@ -1,7 +1,6 @@
 package core;
 
 import static java.lang.Integer.parseInt;
-import static java.lang.System.out;
 
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.openqa.selenium.By;
@@ -184,15 +183,6 @@ public class CourseCards extends BasePage<CourseCards> implements Comparable<Cou
 
     //---------------------------------------------------------------------------
 
-    // получаем минимальное и максимальное значение int
-    public void getMinimumAndMaximumValue() {
-        List<Integer> arrayList = Arrays.asList(5, 1, 6, 9, 9, 1);
-        Integer min = arrayList.stream().reduce((sum, currant) -> sum > currant ? currant : sum).get();
-        Integer max = arrayList.stream().reduce((sum, currant) -> sum < currant ? currant : sum).get();
-        out.println(min);
-        out.println(max);
-    }
-
     public List<String> getLatestAndEarliestCourseNames() {
         List<CourseCards> courseCardsList = new ArrayList<>();
         List<String> latestAndEarliestCourseNames = new ArrayList<>();
@@ -216,8 +206,6 @@ public class CourseCards extends BasePage<CourseCards> implements Comparable<Cou
         latestAndEarliestCourseNames.add(courseCardsList.get(0).getCourseName());
         latestAndEarliestCourseNames.add(courseCardsList.get(courseCardsList.size() - 1).getCourseName());
 
-        out.println(courseCardsList);
-        out.println(latestAndEarliestCourseNames);
         return latestAndEarliestCourseNames;
     }
 
