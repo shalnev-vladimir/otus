@@ -2,8 +2,10 @@ package pages;
 
 import core.BaseTest;
 import core.CourseCards;
+import core.NewCourseCards;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
 import java.util.List;
 
 import static actions.PageElementActions.textFiltering;
@@ -37,5 +39,10 @@ public class MainPageTest extends BaseTest {
     @Test
     void checkListSizeEqualsTwoTest() {
         assertEquals(2, new CourseCards().getLatestAndEarliestCourseNames().size());
+    }
+
+    @Test
+    void newCheckListSizeEqualsTwoTest() throws ParseException {
+        assertEquals(2, new NewCourseCards().getLatestAndEarliestCourseNames().size());
     }
 }

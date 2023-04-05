@@ -14,6 +14,11 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Это первая вариант класса, который нужен, чтобы получить самый ранний и самый позний курс.
+ * Она так себе.
+ * Лучше смотреть версию NewCourseCards.
+ */
 public class CourseCards extends BasePage<CourseCards> implements Comparable<CourseCards> {
 
     private final String courseTitles = ".lessons__new-item-title";
